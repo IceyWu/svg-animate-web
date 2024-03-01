@@ -1,22 +1,24 @@
 {
-  "name": "@iceywu/utils",
+  "name": "svg-animate-web",
   "type": "module",
-  "version": "0.0.37",
+  "version": "0.0.1",
   "packageManager": "pnpm@8.12.0",
-  "description": "nothing to use 🧪",
+  "description": "svg-animate-web",
   "author": "Icey Wu <3128006406@qq.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/iceywu",
-  "homepage": "https://github.com/iceywu/utils#readme",
+  "homepage": "https://github.com/iceywu/svg-animate-web#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iceywu/utils.git"
+    "url": "git+https://github.com/iceywu/svg-animate-web.git"
   },
   "bugs": {
-    "url": "https://github.com/iceywu/utils/issues"
+    "url": "https://github.com/iceywu/svg-animate-web/issues"
   },
   "keywords": [
-    "utils"
+    "svg",
+    "animate",
+    "web"
   ],
   "sideEffects": false,
   "exports": {

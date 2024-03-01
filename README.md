@@ -31,5 +31,5 @@ yarn addsvg-animate-web
 
 ```ts
 // main.ts
-import SVGAnimateWeb from 'svg-animate-web'
+import SetSvgAnimation from 'svg-animate-web'
 ```
