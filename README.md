@@ -51,16 +51,19 @@ yarn add svg-animate-web
 
 ```ts
 // main.ts
-import SetSvgAnimation from "svg-animate-web";
-const svgRef = ref<HTMLElement>();
+import SetSvgAnimation from 'svg-animate-web'
+const svgRef = ref<HTMLElement>()
 onMounted(() => {
-  SetSvgAnimation(svgRef.value, {
-    duration: 5,
-    fill: "transparent",
-    stroke: "#333",
-    strokeWidth: 10,
-  });
-});
+  SetSvgAnimation(svgRef.value)
+
+  // Or use with options
+  // SetSvgAnimation(svgRef.value, {
+  //   duration: 5,
+  //   fill: 'transparent',
+  //   stroke: '#333',
+  //   strokeWidth: 10,
+  // })
+})
 ```
 
 ## 🐟 Show

@@ -32,7 +32,7 @@ export function setPathAnimation(pathElement: any, options?: AnimateOptions) {
     stroke = '#333',
     count = 'infinite',
     strokeWidth = 1,
-  } = options as AnimateOptions
+  } = options || {} as AnimateOptions
   const maxPath = pathElement.getTotalLength()
   const j = Math.random().toString(36).substr(2, 8)
   const fillBase = pathElement.getAttribute('fill')

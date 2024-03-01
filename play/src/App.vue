@@ -37,11 +37,6 @@
 import SetSvgAnimation from "../../src/";
 const svgRef = ref<HTMLElement>();
 onMounted(() => {
-  SetSvgAnimation(svgRef.value, {
-    duration: 5,
-    fill: "transparent",
-    stroke: "#333",
-    strokeWidth: 10,
-  });
+  SetSvgAnimation(svgRef.value);
 });
 </script>
