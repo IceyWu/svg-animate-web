@@ -32,4 +32,10 @@ yarn addsvg-animate-web
 ```ts
 // main.ts
 import SetSvgAnimation from 'svg-animate-web'
+const svgRef = ref<HTMLElement>();
+onMounted(() => {
+  SetSvgAnimation(svgRef.value, {
+    duration: 1,
+  });
+});
 ```

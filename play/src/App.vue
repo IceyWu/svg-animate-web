@@ -37,14 +37,7 @@ import SetSvgAnimation from "../../src/";
 const svgRef = ref<HTMLElement>();
 onMounted(() => {
   SetSvgAnimation(svgRef.value, {
-    type: "path",
     duration: 1,
-    delay: 0,
-    easing: "easeInOutQuad",
-    path: "M 0 0 L 100 100 L 200 100 L 200 200 L 0 200 Z",
-    fill: "black",
-    stroke: "black",
-    strokeWidth: 5.5,
   });
 });
 </script>
