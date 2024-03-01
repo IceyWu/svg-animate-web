@@ -1,0 +1,76 @@
+{
+  "name": "@iceywu/utils",
+  "type": "module",
+  "version": "0.0.37",
+  "packageManager": "pnpm@8.12.0",
+  "description": "nothing to use 🧪",
+  "author": "Icey Wu <3128006406@qq.com>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/iceywu",
+  "homepage": "https://github.com/iceywu/utils#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iceywu/utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iceywu/utils/issues"
+  },
+  "keywords": [
+    "utils"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "nr build --watch",
+    "lint": "eslint .",
+    "lint-fix": "nr lint --fix",
+    "prepublishOnly": "npm run build",
+    "release": "bumpp --commit --push --tag && npm publish --registry https://registry.npmjs.org",
+    "changelog": "conventional-changelog -p custom-config -i CHANGELOG.md -s -r 0  -n ./changelog-option.cjs",
+    "start": "esno src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "docs": "npm -C docs run docs:dev",
+    "play": "npm -C play run dev"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.6.4",
+    "@antfu/ni": "^0.21.12",
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@types/node": "^20.11.16",
+    "bumpp": "^9.3.0",
+    "conventional-changelog": "^5.1.0",
+    "conventional-changelog-cli": "^4.1.0",
+    "conventional-changelog-custom-config": "^0.3.1",
+    "eslint": "npm:eslint-ts-patch@8.56.0-0",
+    "eslint-ts-patch": "8.56.0-0",
+    "esno": "^4.0.0",
+    "p-limit": "^5.0.0",
+    "rollup": "^4.9.6",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-esbuild": "^6.1.1",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12",
+    "vitest": "^1.2.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
