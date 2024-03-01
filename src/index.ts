@@ -1,8 +1,9 @@
 export interface AnimateOptions {
-  duration?: number;
-  fillColor?: string;
-  strokeColor?: string;
-  count?: string | number | undefined;
+  duration?: number
+  fill?: string
+  stroke?: string
+  count?: string | number | undefined
+  strokeWidth?: number | undefined
 }
 
 /**
@@ -12,11 +13,11 @@ export interface AnimateOptions {
  * @description 设置元素样式
  */
 export function setStyle(target: any, styles: any) {
-  for (const k in styles) target.style[k] = styles[k];
+  for (const k in styles) target.style[k] = styles[k]
 }
 export function getAllPath(svgDom: any) {
-  const path = svgDom.querySelectorAll("path");
-  return path;
+  const path = svgDom.querySelectorAll('path')
+  return path
 }
 /**
  * @param pathElement 目标元素b
@@ -26,50 +27,52 @@ export function getAllPath(svgDom: any) {
  */
 export function setPathAnimation(pathElement: any, options?: AnimateOptions) {
   const {
-    duration = "5",
-    fillColor = "#fff",
-    strokeColor = "#333",
-    count = "infinite",
-  } = options as AnimateOptions;
-  const maxPath = pathElement.getTotalLength();
-  const j = Math.random().toString(36).substr(2, 8);
-  const fill = pathElement.getAttribute("fill");
+    duration = '5',
+    fill = '#fff',
+    stroke = '#333',
+    count = 'infinite',
+    strokeWidth = 1,
+  } = options as AnimateOptions
+  const maxPath = pathElement.getTotalLength()
+  const j = Math.random().toString(36).substr(2, 8)
+  const fillBase = pathElement.getAttribute('fill')
   const path = {
-    fill: "none",
+    fill: 'none',
     animation: `animation${j} ${duration}s linear ${count} forwards`,
-  };
-  setStyle(pathElement, path);
+    stroke: fillBase,
+    strokeWidth,
+  }
+  setStyle(pathElement, path)
   document.styleSheets[0].insertRule(
     `
       @keyframes animation${j} {
       0% {
-        fill: ${fillColor};
-        stroke: ${strokeColor};
+        fill: ${fill};
+        stroke: ${stroke};
         stroke-dasharray: ${maxPath};
         stroke-dashoffset: ${maxPath};
       }
       50% {
-        fill: ${fillColor};
-        stroke: ${strokeColor};
+        fill: ${fill};
+        stroke: ${stroke};
         stroke-dasharray: ${maxPath};
         stroke-dashoffset: 0;
       }
       100% {
-        fill: ${fill};
-        stroke: ${fill};
+        fill: ${fillBase};
+        stroke: ${fillBase};
       }
       }
-    `
-  );
+    `,
+  )
 }
 
 export function setSvgAnimation(
   svgElement: HTMLElement | undefined,
-  options?: AnimateOptions
+  options?: AnimateOptions,
 ) {
-  const pathElements = getAllPath(svgElement);
-  for (let i = 0; i < pathElements.length; i++) {
-    setPathAnimation(pathElements[i], options);
-  }
+  const pathElements = getAllPath(svgElement)
+  for (let i = 0; i < pathElements.length; i++)
+    setPathAnimation(pathElements[i], options)
 }
-export default setSvgAnimation;
+export default setSvgAnimation
