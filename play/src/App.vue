@@ -40,8 +40,10 @@ onMounted(() => {
   SetSvgAnimation(svgRef.value, {
     duration: 5,
     fill: "transparent",
+    fillBase: "#333",
     stroke: "#333",
     strokeWidth: 10,
+    count:1
   });
 });
 </script>

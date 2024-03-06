@@ -1,9 +1,10 @@
 export interface AnimateOptions {
-  duration?: number
-  fill?: string
-  stroke?: string
-  count?: string | number | undefined
-  strokeWidth?: number | undefined
+  duration?: number;
+  fill?: string;
+  fillBase?: string;
+  stroke?: string;
+  count?: string | number | undefined;
+  strokeWidth?: number | undefined;
 }
 
 /**
@@ -13,11 +14,11 @@ export interface AnimateOptions {
  * @description 设置元素样式
  */
 export function setStyle(target: any, styles: any) {
-  for (const k in styles) target.style[k] = styles[k]
+  for (const k in styles) target.style[k] = styles[k];
 }
 export function getAllPath(svgDom: any) {
-  const path = svgDom.querySelectorAll('path')
-  return path
+  const path = svgDom.querySelectorAll("path");
+  return path;
 }
 /**
  * @param pathElement 目标元素b
@@ -27,22 +28,23 @@ export function getAllPath(svgDom: any) {
  */
 export function setPathAnimation(pathElement: any, options?: AnimateOptions) {
   const {
-    duration = '5',
-    fill = '#fff',
-    stroke = '#333',
-    count = 'infinite',
+    duration = "5",
+    fill = "#fff",
+    stroke = "#333",
+    count = "infinite",
     strokeWidth = 1,
-  } = options || {} as AnimateOptions
-  const maxPath = pathElement.getTotalLength()
-  const j = Math.random().toString(36).substr(2, 8)
-  const fillBase = pathElement.getAttribute('fill')
+    fillBase,
+  } = options || ({} as AnimateOptions);
+  const maxPath = pathElement.getTotalLength();
+  const j = Math.random().toString(36).substr(2, 8);
+  const fillBaseVal = fillBase || pathElement.getAttribute("fill");
   const path = {
-    fill: 'none',
+    fill: "none",
     animation: `animation${j} ${duration}s linear ${count} forwards`,
     stroke: fillBase,
     strokeWidth,
-  }
-  setStyle(pathElement, path)
+  };
+  setStyle(pathElement, path);
   document.styleSheets[0].insertRule(
     `
       @keyframes animation${j} {
@@ -59,20 +61,20 @@ export function setPathAnimation(pathElement: any, options?: AnimateOptions) {
         stroke-dashoffset: 0;
       }
       100% {
-        fill: ${fillBase};
-        stroke: ${fillBase};
+        fill: ${fillBaseVal};
+        stroke: ${fillBaseVal};
       }
       }
-    `,
-  )
+    `
+  );
 }
 
 export function setSvgAnimation(
   svgElement: HTMLElement | undefined,
-  options?: AnimateOptions,
+  options?: AnimateOptions
 ) {
-  const pathElements = getAllPath(svgElement)
+  const pathElements = getAllPath(svgElement);
   for (let i = 0; i < pathElements.length; i++)
-    setPathAnimation(pathElements[i], options)
+    setPathAnimation(pathElements[i], options);
 }
-export default setSvgAnimation
+export default setSvgAnimation;
