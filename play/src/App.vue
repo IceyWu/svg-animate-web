@@ -8,7 +8,7 @@
       <TheHeader />
     </div>
     <div class="fcc">
-      <SVGLogo @vnode-mounted="initSvg" />
+      <SVGLogo @vue:mounted="initSvg" />
     </div>
   </div>
 </template>
