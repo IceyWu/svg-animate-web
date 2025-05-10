@@ -160,7 +160,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, onMounted, nextTick } from 'vue';
-import { setSvgAnimation, controlSvgAnimation } from '../../src/';
+import { setSvgAnimation, controlSvgAnimation } from 'svg-animate-web';
 import SVGLogo from './components/SVGLogo.vue';
 import { svgExamples } from './data/svgExamples'; // 导入SVG示例库
 
