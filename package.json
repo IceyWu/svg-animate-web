@@ -45,7 +45,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "docs": "npm -C docs run docs:dev",
-    "play": "npm -C play run dev"
+    "play": "npm -C play run dev",
+    "play:build": "npm -C play run build"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",
