@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "serve": "vite",
-    "preview": "vite build && vite preview"
+    "preview": "vite build && vite preview",
+    "build": "vite build"
   },
   "dependencies": {
     "@iconify-json/carbon": "^1.1.25",
