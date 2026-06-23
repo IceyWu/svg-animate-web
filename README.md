@@ -1,86 +1,106 @@
-<h1 align="center">SVG-Animate-Web</h1>
+<div align="center">
+
+<img src="./docs/logo.gif" alt="svg-animate-web logo" width="120" />
+
+<h1>svg-animate-web</h1>
+
+<p>A zero-dependency <strong>SVG animation</strong> utility for the web — make icons, logos, and illustrations move with one function call.</p>
+
+[![npm](https://img.shields.io/npm/v/svg-animate-web?style=flat-square&color=18181b&label=npm)](https://www.npmjs.com/package/svg-animate-web)
+[![downloads](https://img.shields.io/npm/dm/svg-animate-web?style=flat-square&color=18181b&label=downloads)](https://www.npmjs.com/package/svg-animate-web)
+[![gzip](https://img.shields.io/bundlephobia/minzip/svg-animate-web?style=flat-square&color=18181b&label=gzip)](https://bundlephobia.com/package/svg-animate-web)
+[![types](https://img.shields.io/npm/types/svg-animate-web?style=flat-square&color=18181b&label=types)](https://www.npmjs.com/package/svg-animate-web)
+[![license](https://img.shields.io/npm/l/svg-animate-web?style=flat-square&color=18181b&label=license)](./LICENSE)
+
+**[English](./README.md)** · **[中文文档](./README.zh-CN.md)** · **[Live Demo](https://svg-animate-web.netlify.app/)** · **[Source](./play/src/App.vue)**
 
 <p align="center">
-Making your svg moving🦄.
+  <img src="./docs/use.gif" alt="svg-animate-web demo" width="520" />
 </p>
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/svg-animate-web">
-    <img src="https://img.shields.io/npm/v/svg-animate-web?color=14C9C9&label=" alt="NPM version">
-  </a>
-</p>
+</div>
 
+---
 
-## 动机
+## ✨ Features
 
-周末闲暇时，我在做个人网站时遇到一个有趣的需求：想让 SVG 图标有个描边动画效果。市面上有很多成熟的动画库，但大多功能繁杂、体积庞大。其实我只需要一个轻量的 SVG 动画解决方案，于是决定自己动手写一个。
+- 🪶 **Zero dependencies** — tiny footprint, no runtime dependencies
+- 🧩 **Framework agnostic** — works with Vue, React, Vanilla JS, or any web stack
+- 🎨 **Multiple render modes** — `outline`, `fill`, `mixed`, `grow`, `fade-in`
+- ⏯️ **Playback control** — `play`, `pause`, `reset` at runtime
+- 🔡 **Fully typed** — built with TypeScript
 
-这就是`svg-animate-web`的由来 —— 一个完全为个人兴趣开发的小工具，纯粹是解决自己的需求，顺便分享给有类似需求的同学。
-
-## 📦 Installation
+## 📦 Install
 
 ```bash
-npm install svg-animate-web
-or
 pnpm add svg-animate-web
-or
-yarn add svg-animate-web
 ```
 
-## 🦄 Usage
-[Demo](https://svg-animate-web.netlify.app/)
-
-
-### Vue
-
-```html
-<!-- temp.vue -->
-<template>
-  <svg
-    class="w-80 h-80"
-    ref="svgRef"
-    xmlns="http://www.w3.org/2000/svg"
-    id="canvas"
-    viewBox="543.535 363.549 714.421 294.549"
-  >
-    <path
-      d="M 5561 ....... 422.32"
-      style="stroke: black; fill: black"
-      stroke-width="5.5"
-    />
-    <path
-      d="M 5561 ....... 422.32"
-      style="stroke: black; fill: black"
-      stroke-width="5.5"
-    />
-    ....
-  </svg>
-</template>
-```
+## 🚀 Usage
 
 ```ts
-// main.ts
-import SetSvgAnimation from 'svg-animate-web'
-const svgRef = ref<HTMLElement>()
-onMounted(() => {
-  SetSvgAnimation(svgRef.value)
+import { setSvgAnimation } from 'svg-animate-web'
 
-  // Or use with options
-  // SetSvgAnimation(svgRef.value, {
-  // duration: 5,
-  //   fill: "transparent",
-  //   fillBase: "#333",
-  //   stroke: "#333",
-  //   strokeWidth: 10,
-  //   count:1
-  // })
+const svg = document.querySelector<SVGSVGElement>('#my-svg')
+
+setSvgAnimation(svg, {
+  duration: 3,
+  stroke: '#333',
+  strokeWidth: 2,
+  count: 'infinite',
 })
 ```
 
-## 🐟 Source
+```html
+<svg id="my-svg" viewBox="0 0 100 100">
+  <path d="M10 10 L90 90" />
+  <path d="M90 10 L10 90" />
+</svg>
+```
 
-[Demo Source](./play/src/App.vue)
+Vue / React users can call `setSvgAnimation` after the SVG element is mounted.
 
-<p align="center">
-<img src="./docs/use.gif" style="width:100%;"  />
-</p>
+## ⚙️ Options
+
+| Option        | Type                              | Default      | Description                         |
+| ------------- | --------------------------------- | ------------ | ----------------------------------- |
+| `duration`    | `number`                          | `5`          | Animation duration in seconds       |
+| `delay`       | `number`                          | `0`          | Initial delay in seconds            |
+| `count`       | `number \| string`                | `'infinite'` | Iteration count                     |
+| `easing`      | CSS timing function               | `'linear'`   | Animation easing                    |
+| `reverse`     | `boolean`                         | `false`      | Play animation in reverse           |
+| `fill`        | `string`                          | —            | Fill color override                 |
+| `fillBase`    | `string`                          | —            | Base fill color                     |
+| `stroke`      | `string`                          | `'#333'`     | Stroke color                        |
+| `strokeWidth` | `number`                          | `1`          | Stroke width                        |
+| `renderMode`  | `outline \| fill \| mixed \| grow \| fade-in` | path: `outline`, rect: `grow` | Animation style |
+| `pathOptions` | `Partial<PathAnimateOptions>`     | —            | Options for path-like elements      |
+| `rectOptions` | `Partial<RectAnimateOptions>`     | —            | Options for `<rect>` elements       |
+| `onComplete`  | `() => void`                      | —            | Called when animation ends          |
+
+## 🛠️ API
+
+```ts
+setSvgAnimation(svg, options?)
+setPathAnimation(element, options?)
+controlSvgAnimation(svg, 'play' | 'pause' | 'reset')
+```
+
+## 🐟 Example
+
+See [`play/src/App.vue`](./play/src/App.vue) for the full demo source.
+
+```bash
+pnpm install
+pnpm play
+```
+
+## 📄 License
+
+<div align="center">
+
+MIT © [Icey Wu](https://github.com/iceywu)
+
+<sub>If this project helps you, consider giving it a ⭐.</sub>
+
+</div>

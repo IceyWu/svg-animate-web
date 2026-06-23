@@ -8,9 +8,9 @@
         stroke-linejoin: round;
         animation: write 4.6s cubic-bezier(.6,0,.35,1) infinite;
       }
-      .s { stroke-width: 13; --len: 150; stroke-dasharray: 150; stroke-dashoffset: 150; animation-delay: 0s; }
-      .v { stroke-width: 14; --len: 140; stroke-dasharray: 140; stroke-dashoffset: 140; animation-delay: .55s; }
-      .g { stroke-width: 13; --len: 300; stroke-dasharray: 300; stroke-dashoffset: 300; animation-delay: 1.05s; }
+      .s { stroke-width: 13; --len: 133; stroke-dasharray: 133; stroke-dashoffset: 133; animation-delay: 0s; }
+      .v { stroke-width: 14; --len: 123; stroke-dasharray: 123; stroke-dashoffset: 123; animation-delay: .55s; }
+      .g { stroke-width: 13; --len: 264; stroke-dasharray: 264; stroke-dashoffset: 264; animation-delay: 1.05s; }
 
       /* underline flourish, like a signature */
       .flourish {
@@ -18,9 +18,9 @@
         stroke: #e8633a;
         stroke-width: 8;
         stroke-linecap: round;
-        --len: 200;
-        stroke-dasharray: 200;
-        stroke-dashoffset: 200;
+        --len: 133;
+        stroke-dasharray: 133;
+        stroke-dashoffset: 133;
         animation: write 4.6s cubic-bezier(.6,0,.35,1) infinite;
         animation-delay: 1.7s;
       }

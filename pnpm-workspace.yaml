@@ -1,5 +1,5 @@
 packages:
   - play
 
-onlyBuiltDependencies:
-  - esbuild
+allowBuilds:
+  esbuild: true
