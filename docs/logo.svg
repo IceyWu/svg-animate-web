@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" role="img" aria-label="svg-animate-web logo">
+  <defs>
+    <style>
+      .hand {
+        fill: none;
+        stroke: #23201c;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        animation: write 4.6s cubic-bezier(.6,0,.35,1) infinite;
+      }
+      .s { stroke-width: 13; --len: 150; stroke-dasharray: 150; stroke-dashoffset: 150; animation-delay: 0s; }
+      .v { stroke-width: 14; --len: 140; stroke-dasharray: 140; stroke-dashoffset: 140; animation-delay: .55s; }
+      .g { stroke-width: 13; --len: 300; stroke-dasharray: 300; stroke-dashoffset: 300; animation-delay: 1.05s; }
+
+      /* underline flourish, like a signature */
+      .flourish {
+        fill: none;
+        stroke: #e8633a;
+        stroke-width: 8;
+        stroke-linecap: round;
+        --len: 200;
+        stroke-dasharray: 200;
+        stroke-dashoffset: 200;
+        animation: write 4.6s cubic-bezier(.6,0,.35,1) infinite;
+        animation-delay: 1.7s;
+      }
+
+      @keyframes write {
+        0%   { stroke-dashoffset: var(--len, 300); }
+        38%  { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 0; }
+      }
+    </style>
+  </defs>
+
+  <!-- warm paper -->
+  <rect x="8" y="8" width="224" height="224" rx="52" fill="#f6efe2"/>
+  <rect x="8" y="8" width="224" height="224" rx="52" fill="none" stroke="#23201c" stroke-width="4" stroke-opacity=".9"/>
+
+  <!-- hand-written "s" : wobbly marker stroke -->
+  <path class="hand s" d="M92 96 C 90 84, 58 82, 56 98 C 54 112, 86 110, 86 126 C 86 142, 56 142, 52 130"/>
+
+  <!-- hand-written "v" : two organic strokes meeting -->
+  <path class="hand v" d="M104 92 C 110 116, 116 138, 124 150 C 132 138, 138 116, 144 92"/>
+
+  <!-- hand-written "g" : bowl + descender tail -->
+  <path class="hand g" d="M188 100 C 178 88, 158 88, 150 102 C 142 116, 148 138, 164 138 C 178 138, 188 126, 188 100
+                          C 188 152, 190 176, 168 182 C 152 186, 142 176, 146 168"/>
+
+  <!-- signature underline -->
+  <path class="flourish" d="M56 196 C 96 188, 150 192, 188 186"/>
+</svg>
