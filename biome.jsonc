@@ -1,0 +1,6 @@
+{
+  "extends": ["ultracite/biome/core"],
+  "files": {
+    "includes": ["src/**/*", "*.js", "*.ts", "*.json", "*.jsonc"]
+  }
+}

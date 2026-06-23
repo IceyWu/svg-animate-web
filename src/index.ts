@@ -1,8 +1,8 @@
 // 基础动画配置接口
 export interface BaseAnimateOptions {
-  duration?: number;
   count?: string | number;
   delay?: number;
+  duration?: number;
   easing?: "linear" | "ease" | "ease-in" | "ease-out" | "ease-in-out";
   onComplete?: () => void;
   reverse?: boolean;
@@ -28,9 +28,9 @@ export interface RectAnimateOptions extends BaseAnimateOptions, StyleOptions {
 
 // 合并接口
 export interface AnimateOptions extends BaseAnimateOptions, StyleOptions {
-  rectOptions?: Partial<RectAnimateOptions>;
-  pathOptions?: Partial<PathAnimateOptions>;
   fillBase?: string; // 兼容旧版本
+  pathOptions?: Partial<PathAnimateOptions>;
+  rectOptions?: Partial<RectAnimateOptions>;
   renderMode?: "outline" | "fill" | "mixed" | "grow" | "fade-in";
 }
 
@@ -38,16 +38,24 @@ function setStyle(
   element: HTMLElement | SVGElement,
   styles: Record<string, any>
 ) {
-  if (!element || !styles) return;
+  if (!(element && styles)) {
+    return;
+  }
 
   Object.entries(styles).forEach(([key, value]) => {
-    if (value === undefined) return;
+    if (value === undefined) {
+      return;
+    }
 
     const cssKey = key.replace(/([A-Z])/g, "-$1").toLowerCase();
 
     // 跳过特定类名元素上的白名单属性
-    if (element.className?.animVal && ["fill", "stroke-width"].includes(cssKey))
+    if (
+      element.className?.animVal &&
+      ["fill", "stroke-width"].includes(cssKey)
+    ) {
       return;
+    }
 
     element.style.setProperty(cssKey, value.toString());
   });
@@ -58,10 +66,14 @@ function getElementFillColor(
   defaultColor: string,
   userColor?: string
 ): string {
-  if (userColor) return userColor;
+  if (userColor) {
+    return userColor;
+  }
 
   const inlineFill = element.getAttribute("fill");
-  if (inlineFill && inlineFill !== "none") return inlineFill;
+  if (inlineFill && inlineFill !== "none") {
+    return inlineFill;
+  }
 
   try {
     const computedFill = window.getComputedStyle(element).fill;
@@ -170,7 +182,9 @@ function addAnimationEndListener(
   element: SVGElement,
   callback?: () => void
 ): void {
-  if (!callback) return;
+  if (!callback) {
+    return;
+  }
 
   element.addEventListener("animationend", function handler() {
     if (callback) {
@@ -184,7 +198,9 @@ export function setPathAnimation(
   element: SVGElement,
   options?: AnimateOptions
 ) {
-  if (!element || !(element instanceof SVGElement)) return;
+  if (!(element && element instanceof SVGElement)) {
+    return;
+  }
 
   // 检查是否为矩形元素
   const isRect = element.tagName.toLowerCase() === "rect";
@@ -283,7 +299,7 @@ function applyRectAnimation(
       };
       break;
 
-    case "outline":
+    case "outline": {
       const perimeter = 2 * (width + height);
       initialStyles = {
         fill: "none",
@@ -294,6 +310,7 @@ function applyRectAnimation(
         animation: `rect-animation${id} ${duration}s ${easing} ${delay}s ${count} ${animationDirection} forwards`,
       };
       break;
+    }
   }
 
   setStyle(rectElement, initialStyles);
@@ -337,7 +354,9 @@ function applyPathAnimation(
     pathLength = 2 * (bbox.width + bbox.height);
   }
 
-  if (pathLength <= 0) pathLength = 1;
+  if (pathLength <= 0) {
+    pathLength = 1;
+  }
 
   const id = Math.random().toString(36).substring(2, 10);
   const fillBaseVal = getElementFillColor(pathElement, "#333", fillBase);
@@ -393,14 +412,18 @@ export function setSvgAnimation(
   svgElement: SVGSVGElement | HTMLElement | null | undefined,
   options?: AnimateOptions
 ) {
-  if (!svgElement) return;
+  if (!svgElement) {
+    return;
+  }
 
   const pathElements = svgElement.querySelectorAll(
     "path, line, polyline, polygon, rect, circle, ellipse"
   );
 
   Array.from(pathElements).forEach((element, index) => {
-    if (!(element instanceof SVGElement)) return;
+    if (!(element instanceof SVGElement)) {
+      return;
+    }
 
     const elementOptions = { ...options };
     elementOptions.delay = (options?.delay ?? 0) + index * 0.1;
@@ -412,14 +435,18 @@ export function controlSvgAnimation(
   svgElement: SVGElement | HTMLElement | null | undefined,
   action: "play" | "pause" | "reset"
 ): void {
-  if (!svgElement) return;
+  if (!svgElement) {
+    return;
+  }
 
   const elements = svgElement.querySelectorAll(
     "path, line, polyline, polygon, rect, circle, ellipse"
   );
 
   elements.forEach((el) => {
-    if (!(el instanceof SVGElement)) return;
+    if (!(el instanceof SVGElement)) {
+      return;
+    }
 
     switch (action) {
       case "play":
@@ -428,11 +455,12 @@ export function controlSvgAnimation(
       case "pause":
         el.style.animationPlayState = "paused";
         break;
-      case "reset":
+      case "reset": {
         const currentAnimation = el.style.animation;
         el.style.animation = "none";
         setTimeout(() => (el.style.animation = currentAnimation), 10);
         break;
+      }
     }
   });
 }

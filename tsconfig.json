@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2018",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -13,7 +10,5 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "exclude": [
-    "./play"
-  ]
+  "exclude": ["./play"]
 }

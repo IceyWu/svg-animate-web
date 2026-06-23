@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <svg
     class="w-80 h-80"
     xmlns="http://www.w3.org/2000/svg"
